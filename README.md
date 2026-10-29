@@ -132,6 +132,21 @@ If you get a pyarrow/NumPy error: `pip install "pyarrow<21"`.
 
 ---
 
+## Logs (how we track work)
+
+Each person keeps a detailed log in their own file. Open it to see what was run and what came out.
+
+| Person | Log |
+|---|---|
+| Deeptha | [docs/log/deeptha.md](docs/log/deeptha.md) |
+| Disha | [docs/log/disha.md](docs/log/disha.md) |
+| Dhriti | [docs/log/dhriti.md](docs/log/dhriti.md) |
+| Mayur | [docs/log/mayur.md](docs/log/mayur.md) |
+
+To get log entries automatically, paste the prompt in [docs/LOG_PROMPT.md](docs/LOG_PROMPT.md) at the start of your AI chat, then paste your commands and outputs as you work. It returns a ready-to-paste log entry and the README row to update.
+
+---
+
 ## Changelog
 
 | Date | Who | What |
@@ -139,3 +154,4 @@ If you get a pyarrow/NumPy error: `pip install "pyarrow<21"`.
 | 2026-10-29 | Dhriti | Repo skeleton, environment, pinned `requirements.txt` |
 | 2026-10-29 | Dhriti | `complex.py`: Delaunay and grid builders, `B1`/`B2`, tests (Euler check caught and fixed a fake-triangle bug) |
 | 2026-10-29 | Dhriti | `hodge.py`, `synth.py` and `tests/test_hodge.py` added (awaiting local test run) |
+
