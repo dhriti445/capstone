@@ -17,3 +17,10 @@ Newest entries at the bottom. Format is defined in docs/LOG_PROMPT.md.
 - **What it means:** orientation and incidence matrices are consistent
 - **Problems and fixes:** Euler test found 291 triangles instead of 288 because 3-cliques include fake faces; fixed by using Delaunay simplices directly
 - **Next:** Hodge decomposition (`hodge.py`)
+### 2026-10-29 - Hodge decomposition and full test run
+- **Task:** `hodge.py`, `synth.py`, tests
+- **What I did:** added Hodge decomposition (gradient/curl/harmonic), toy grid complexes with holes, planted-flow generator, and tests; ran `pytest -q`
+- **Result:** 14 passed (env 1, complex 3, hodge 10)
+- **What it means:** the decomposition recovers planted parts, parts are orthogonal, and beta1 equals the number of holes on the toy meshes
+- **Problems and fixes:** none (only harmless docrep SyntaxWarnings from squidpy)
+- **Next:** run `scripts/demo_toy.py` for the figure, then `scripts/check_visium.py` on a real slice

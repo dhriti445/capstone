@@ -34,8 +34,8 @@ Status key: **Done** | **In progress** | **Not started**
 |---|---|---|
 | Repo skeleton and environment | Done | Python 3.11, CPU torch, scanpy, squidpy, toponetx, topomodelx, gudhi |
 | Cell-complex builder (`complex.py`) | Done | Delaunay mode (irregular cells) and grid mode (Visium). `B1 @ B2 = 0` and Euler checks pass |
-| Hodge decomposition (`hodge.py`) | In progress | Code written; confirm `pytest` passes locally, then mark Done |
-| Synthetic complexes and planted flows (`synth.py`) | In progress | Grid with holes, planted gradient/curl/harmonic flows |
+| Hodge decomposition (`hodge.py`) | done | Code written; confirm `pytest` passes locally, then mark Done |
+| Synthetic complexes and planted flows (`synth.py`) | done | Grid with holes, planted gradient/curl/harmonic flows |
 | Real Visium slice into a complex (spots, edges, triangles, beta1) | Not started | `python scripts/check_visium.py <file.h5ad>` |
 | Synthetic validation notebook | Not started | Error vs noise, mesh size, masked edges, beta1 vs hole count; 4-panel figure |
 
@@ -154,4 +154,5 @@ To get log entries automatically, paste the prompt in [docs/LOG_PROMPT.md](docs/
 | 2026-10-29 | Dhriti | Repo skeleton, environment, pinned `requirements.txt` |
 | 2026-10-29 | Dhriti | `complex.py`: Delaunay and grid builders, `B1`/`B2`, tests (Euler check caught and fixed a fake-triangle bug) |
 | 2026-10-29 | Dhriti | `hodge.py`, `synth.py` and `tests/test_hodge.py` added (awaiting local test run) |
+| 2026-10-29 | Dhriti | hodge.py and synth.py done, 14 tests pass |
 
