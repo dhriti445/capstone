@@ -1,0 +1,10 @@
+id,st_technology,nb_genes,spots_under_tissue,patient,image_filename,dataset_title
+TENX180,Visium HD,18085,2377,,TENX180.tif,"Visium HD Spatial Gene Expression Library, Human Breast Cancer (Fresh Frozen), Ultima Sequencing"
+TENX162,Visium HD,18085,2021,,TENX162.tif,"Visium HD Spatial Gene Expression Library, Human Breast Cancer (Fresh Frozen)"
+TENX161,Visium HD,18085,2809,,TENX161.tif,"Visium HD Spatial Gene Expression Library, Human Breast Cancer (Fixed Frozen)"
+TENX68,Visium,18085,1657,,TENX68.tif,"Fresh Frozen Visium on CytAssist: Human Breast Cancer, Probe-Based Whole Transcriptome Profiling"
+TENX53,Visium,36601,4898,,TENX53.tif,"Human Breast Cancer: Visium Fresh Frozen, Whole Transcriptome"
+TENX39,Visium,17943,2518,,TENX39.tif,"Human Breast Cancer: Ductal Carcinoma In Situ, Invasive Carcinoma (FFPE)"
+TENX14,Visium,33538,4015,,TENX14.tif,Human Breast Cancer (Block A Section 2)
+TENX13,Visium,33538,3813,,TENX13.tif,Human Breast Cancer (Block A Section 1)
+NCBI776,Visium,18085,4992,,NCBI776.tif,"High resolution mapping of the tumor microenvironment using integrated single-cell, spatial and in situ analysis [scRNA-seq and Visium]"

@@ -1,0 +1,46 @@
+TENX53 MASTER PREPROCESSING REPORT
+============================================================
+Generated: 2026-10-29T14:30:41
+Source: /Users/mayurshadhidhar/Documents/Capstone/processed/TENX53_processed.h5ad
+Starter: /Users/mayurshadhidhar/Documents/Capstone/starter.h5ad
+Final shape: 4898 spots x 24387 features
+
+QC THRESHOLDS (PROVISIONAL)
+Low counts: < 500
+Low detected genes: < 200
+High mitochondrial fraction: > 15.0%
+Zero counts: flagged
+
+QC COUNTS
+Low-count spots: 29
+Low-gene spots: 3
+High-mito spots: 0
+Zero-count spots: 0
+Flagged by any rule: 29
+Spots removed automatically: 0
+
+OUTPUT FILES
+/Users/mayurshadhidhar/Documents/Capstone/starter.h5ad
+/Users/mayurshadhidhar/Documents/Capstone/processed/TENX53_qc_metrics.csv
+/Users/mayurshadhidhar/Documents/Capstone/processed/TENX53_qc_flags.csv
+/Users/mayurshadhidhar/Documents/Capstone/processed/TENX53_qc_flag_summary.csv
+/Users/mayurshadhidhar/Documents/Capstone/processed/TENX53_spatial_qc.png
+
+PROJECT STATUS
+[DONE] Dataset load: 4898 spots x 24387 features
+[DONE] Spatial coordinates: ('4898 valid coordinate pairs',)
+[DONE] QC metrics and flag overlap: Saved metrics and 29 flagged spots
+[DONE] Spatial QC plot: TENX53_spatial_qc.png
+[DONE] starter.h5ad handoff: Reopened successfully with shape (4898, 24387)
+[PENDING] Additional dataset: HER2ST: Not found by this filename audit
+[PENDING] Additional dataset: TCGA_BRCA: Not found by this filename audit
+[PENDING] Additional dataset: DLPFC: Not found by this filename audit
+[PENDING] Patient-level splits.json: Not found; requires valid patient/sample identifiers
+[PENDING] Cell-type proportions/labels: No likely cell-type fields found in obs
+
+NOTES
+Existing processed input detected: expression was preserved to avoid double normalization.
+
+QC interpretation: thresholds are screening rules, not validated
+automatic exclusion criteria. Review flagged spots and tissue images
+before deciding whether to remove observations.

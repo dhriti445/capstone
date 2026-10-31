@@ -1,0 +1,13 @@
+TENX53 PREPROCESSING REPORT
+Input: hest_samples/st/TENX53.h5ad
+Output: processed/TENX53_processed.h5ad
+Original shape: 4898 x 36601
+Processed shape: 4898 x 24387
+Zero-count genes removed: 12214
+Spots removed: 0
+Normalization: total counts per spot scaled to 10000
+Transformation: natural log1p
+X contains normalized log1p expression.
+layers['counts'] preserves the retained count-like matrix.
+Spatial coordinates preserved.
+Original input file was not modified.

@@ -1,0 +1,8 @@
+metric,count
+Total spots,4898
+Counts < 500,29
+Detected genes < 200,3
+Mitochondrial % > 15.0,0
+Zero-count spots,0
+Flagged by any available rule,29
+Not flagged by any available rule,4869
