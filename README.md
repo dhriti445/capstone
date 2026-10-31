@@ -147,12 +147,4 @@ To get log entries automatically, paste the prompt in [docs/LOG_PROMPT.md](docs/
 
 ---
 
-## Changelog
-
-| Date | Who | What |
-|---|---|---|
-| 2026-10-29 | Dhriti | Repo skeleton, environment, pinned `requirements.txt` |
-| 2026-10-29 | Dhriti | `complex.py`: Delaunay and grid builders, `B1`/`B2`, tests (Euler check caught and fixed a fake-triangle bug) |
-| 2026-10-29 | Dhriti | `hodge.py`, `synth.py` and `tests/test_hodge.py` added (awaiting local test run) |
-| 2026-10-29 | Dhriti | hodge.py and synth.py done, 14 tests pass |
 

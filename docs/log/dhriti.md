@@ -24,3 +24,11 @@ Newest entries at the bottom. Format is defined in docs/LOG_PROMPT.md.
 - **What it means:** the decomposition recovers planted parts, parts are orthogonal, and beta1 equals the number of holes on the toy meshes
 - **Problems and fixes:** none (only harmless docrep SyntaxWarnings from squidpy)
 - **Next:** run `scripts/demo_toy.py` for the figure, then `scripts/check_visium.py` on a real slice
+
+### 2026-10-31 - Toy demo and first real Visium slice
+- **Task:** Real Visium slice into a complex; toy decomposition figure
+- **What I did:** ran `scripts/demo_toy.py` and `scripts/check_visium.py` (squidpy built-in Visium slice, mouse brain, as a stand-in until the DLPFC file arrives)
+- **Result:** toy mesh 400 nodes / 1071 edges / 678 triangles, beta1 = 2, errors ~1e-11 to 5e-10. Visium slice: 2688 spots, 7790 edges, 5097 triangles, betti (b0, b1) = (3, 8), Euler -5 = 3 - 8
+- **What it means:** the complex builder works on real hex-grid data and the Euler identity holds. beta1 = 8 may include fake holes from tissue gaps, to be separated later by a persistence threshold
+- **Problems and fixes:** FutureWarning from squidpy about spatial_neighbors (no action yet)
+- **Next:** repeat on DLPFC when Mayur shares the file; notebook for the validation experiments
