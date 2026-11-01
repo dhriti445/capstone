@@ -5,7 +5,7 @@ non-zero sum around a hole is signal that circulates (harmonic or curl).
 """
 import numpy as np
 
-from plots import boundary_loops
+from hodgecc.plots import boundary_loops
 
 MIN_LOOP_EDGES = 4
 

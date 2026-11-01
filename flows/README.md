@@ -105,7 +105,7 @@ is the same thing and asserts `B1 @ B2 == 0`.
 | `config.py` | all paths and settings |
 | `flows.py` | load complex, preprocess, product / COMMOT → edge flows, save |
 | `hodge_quick.py` | temporary Hodge decomposition until Dhriti's is ready |
-| `hodgecc/plots.py` | `plot_spots`, `plot_edge_flow`, `plot_hodge_panels`, `plot_holes`, `plot_energy_bars` |
+| `viz.py` | `plot_spots`, `plot_edge_flow`, `plot_hodge_panels`, `plot_holes`, `plot_energy_bars` |
 | `synthetic.py`, `00_make_demo_data.py` | fake tissue with planted patterns |
 | `tests/` | `python -m pytest -q tests` |
 3. **Harmonic share is always ~0%; use step 6 instead.** The harmonic space has only

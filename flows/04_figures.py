@@ -17,7 +17,7 @@ matplotlib.use("Agg")
 import config as C
 from flows import build_incidence
 from hodge_quick import decompose, energy_shares, check_decomposition
-from plots import plot_hodge_panels, plot_energy_bars
+from hodgecc.plots import plot_hodge_panels, plot_energy_bars
 
 kind = sys.argv[1] if len(sys.argv) > 1 else "commot"
 path = C.FLOWS_COMMOT if kind == "commot" else C.FLOWS_PRODUCT

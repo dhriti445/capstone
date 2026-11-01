@@ -16,7 +16,7 @@ import scanpy as sc
 import config as C
 from flows import (load_complex, align_to_complex, preprocess, product_flows,
                    commot_flows, save_flows)
-from plots import median_edge_length
+from hodgecc.plots import median_edge_length
 
 which = sys.argv[1] if len(sys.argv) > 1 else "both"
 C.OUT_DIR.mkdir(parents=True, exist_ok=True)

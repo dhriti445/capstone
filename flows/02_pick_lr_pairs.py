@@ -16,7 +16,7 @@ import liana as li
 
 import config as C
 from flows import load_complex, align_to_complex, preprocess
-from plots import median_edge_length
+from hodgecc.plots import median_edge_length
 
 C.OUT_DIR.mkdir(parents=True, exist_ok=True)
 

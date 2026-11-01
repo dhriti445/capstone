@@ -9,7 +9,7 @@ import matplotlib.pyplot as plt
 
 import config as C
 from flows import load_complex, build_incidence, align_to_complex
-from plots import plot_spots, plot_holes, median_edge_length
+from hodgecc.plots import plot_spots, plot_holes, median_edge_length
 C.FIG_DIR.mkdir(parents=True, exist_ok=True)
 
 adata = sc.read_h5ad(C.H5AD_IN)

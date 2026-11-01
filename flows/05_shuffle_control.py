@@ -24,7 +24,7 @@ import matplotlib.pyplot as plt
 import config as C
 from flows import load_complex, align_to_complex, preprocess, build_incidence, gene_values, product_flow
 from hodge_quick import HodgeSolver
-from plots import PART_COLORS
+from hodgecc.plots import PART_COLORS
 
 adata = sc.read_h5ad(C.H5AD_IN)
 edges, triangles, spot_ids = load_complex(C.COMPLEX_DIR)
