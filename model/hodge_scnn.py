@@ -154,8 +154,10 @@ class HodgeSCNN(nn.Module):
         parts: dict with keys "grad", "curl", "harm" (for Hodge modes)
                or "flow" (for "nosplit"); each a float tensor (E, C)
         ops:   output of hodge_operators(B1, B2)
-    returns dict with "edge" (E, H*), "node" (N, D), "graph" (2D,),
-    and "out" (n_out,) if n_out > 0.
+    returns dict with "edge" (E, H*), "node_agg" (N, 2H*) = edge
+    embeddings pooled onto spots (net outflow and mean size), "node"
+    (N, D) = node_agg after an MLP, "graph" (2D,), and "out" (n_out,)
+    if n_out > 0.
     """
 
     def __init__(self, in_ch, hidden=16, n_layers=2, k=2, mode="hodge",
@@ -191,9 +193,11 @@ class HodgeSCNN(nn.Module):
         )
         div = torch.sparse.mm(ops["B1"], edge)              # net outflow
         size = torch.sparse.mm(ops["B1abs_n"], edge.abs())  # mean flow size
-        node = self.node_mlp(torch.cat([div, size], dim=1))
+        node_agg = torch.cat([div, size], dim=1)
+        node = self.node_mlp(node_agg)
         graph = torch.cat([node.mean(0), node.max(0).values])
-        out = {"edge": edge, "node": node, "graph": graph}
+        out = {"edge": edge, "node_agg": node_agg, "node": node,
+               "graph": graph}
         if self.head is not None:
             out["out"] = self.head(graph)
         return out
