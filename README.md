@@ -54,7 +54,7 @@ Status key: **Done** | **In progress** | **Not started**
 | Task | Status | Notes |
 |---|---|---|
 | One-page data contract (tensors the model receives) | Not started | |
-| Small Hodge-SCNN in TopoModelX | Not started | Train on synthetic data, then one DLPFC slice |
+| Small Hodge-SCNN in TopoModelX | In progress | Sparse SCNN in `model/`; runs on toy complexes and starter.h5ad (0.06 s per pass on CPU); toy ablations behave as expected. Next: real slice once LR flows exist |
 | CPU baselines: Leiden/BANKSY, plain GCN, Cox survival (lifelines) | Not started | |
 | Evaluation harness: ARI/NMI (niches), C-index (survival) | Not started | |
 
@@ -149,3 +149,4 @@ To get log entries automatically, paste the prompt in [docs/LOG_PROMPT.md](docs/
 
 
 | 2026-11-01 | Deeptha | Local environment set up, 14 tests pass; starting data contract |
+| 2026-11-01 | Deeptha | Hodge-SCNN skeleton with ablation modes, toy training script, 13 model tests (27 total pass) |
