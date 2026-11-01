@@ -5,4 +5,5 @@ data/
 *.h5ad
 *.npz
 .pytest_cache/
-*.egg-info/
+*.egg-info/flows/outputs/
+flows/outputs_demo/
