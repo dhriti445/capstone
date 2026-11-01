@@ -36,8 +36,8 @@ Status key: **Done** | **In progress** | **Not started**
 | Cell-complex builder (`complex.py`) | Done | Delaunay mode (irregular cells) and grid mode (Visium). `B1 @ B2 = 0` and Euler checks pass |
 | Hodge decomposition (`hodge.py`) | done | Code written; confirm `pytest` passes locally, then mark Done |
 | Synthetic complexes and planted flows (`synth.py`) | done | Grid with holes, planted gradient/curl/harmonic flows |
-| Real Visium slice into a complex (spots, edges, triangles, beta1) | Not started | `python scripts/check_visium.py <file.h5ad>` |
-| Synthetic validation notebook | Not started | Error vs noise, mesh size, masked edges, beta1 vs hole count; 4-panel figure |
+| Real Visium slice into a complex (spots, edges, triangles, beta1) | done | `python scripts/check_visium.py <file.h5ad>` |
+| Synthetic validation notebook | done | Error vs noise, mesh size, masked edges, beta1 vs hole count; 4-panel figure |
 
 ### Disha (P2): L-R flows and visualization
 

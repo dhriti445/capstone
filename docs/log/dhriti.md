@@ -32,3 +32,11 @@ Newest entries at the bottom. Format is defined in docs/LOG_PROMPT.md.
 - **What it means:** the complex builder works on real hex-grid data and the Euler identity holds. beta1 = 8 may include fake holes from tissue gaps, to be separated later by a persistence threshold
 - **Problems and fixes:** FutureWarning from squidpy about spatial_neighbors (no action yet)
 - **Next:** repeat on DLPFC when Mayur shares the file; notebook for the validation experiments
+
+### 2026-11-01 - Real slice complex and sharing format
+- **Task:** Real Visium slice into a complex, ready for Disha
+- **What I did:** ran `scripts/real_slice_complex.py` on Mayur's `starter.h5ad`; added `hodgecc/io.py` (`save_complex`, `load_complex`) and a small `.npz` output
+- **Result:** TENX53: 4869 spots, 14289 edges, 9413 triangles, b0 = 1, b1 = 8; 126 KB .npz saved
+- **What it means:** the real-data deliverable is done, and Disha can load the complex with one call
+- **Problems and fixes:** anndata refused to write string index (`allow_write_nullable_strings`); fixed by enabling the setting and making the .h5ad copy optional
+- **Next:** wait for Disha's flow array, then run real vs shuffled decomposition
