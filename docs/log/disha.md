@@ -22,3 +22,15 @@ Only edit this file, not other people's logs.
 **Handed over**: TENX53_flows_commot.h5ad, TENX53_flows_product.h5ad, commot_energy.csv, product_energy.csv → Dhriti.
 
 **Next**: Dhriti to cross-check energy splits and fill single-spot gaps in the complex; literature table for the 10 pairs; pick Review-2 figures; COMMOT shuffle null (~10 runs); rerun on DLPFC / colon when available.
+
+## 2026-11-02 — COMMOT shuffle nulls (P2)
+
+**Done**
+- Dhriti cross-checked my TENX53 flows: edges/triangles identical, gradient/curl/harmonic match on all 42 channels (32 COMMOT + 10 product). `uns['flow_names']` kept.
+- Hole correction from Dhriti: 6 of 8 holes are single dropped spots, one is a 2-spot gap, one a 7-spot gap. My step 6 skipped one 24-edge self-touching boundary, likely holding the larger gaps; the 7-spot gap (~250 µm) needs checking on the H&E.
+- New `flows/07_commot_shuffles.py`: 10 COMMOT runs on spot-shuffled expression (same settings as step 3), saved as `outputs/shuffles/TENX53_flows_commot_shuf{0..9}.h5ad`. Same 32 pathways and order, same edges, `flow_kind='commot_shuffle'`, plus `shuffle_seed`, `shuffle_perm`; no gene matrix. ~5.9 min per shuffle.
+- Demo check: shuffled COMMOT curl share ≈ real (29–46% real vs 30–44% shuffled), so the test is needed before claiming feedback loops.
+
+**Handed over**: TENX53_commot_shuffles.zip → Dhriti.
+
+**Next**: Dhriti runs the COMMOT shuffle test; check the 7-spot gap on H&E; literature table; Review-2 figures; DLPFC when ready.
