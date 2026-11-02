@@ -14,19 +14,30 @@ to score the clusters (ARI, NMI).
 Baseline: k-means on simple per-spot flow summaries (net outflow and
 mean flow size for each channel), with no learning and no Hodge split.
 
+--tissues N makes N toy "sections": the same grid with different random
+flows (tissue seeds 0..N-1). With --out, every score is written in the
+shared results format (experiment E3toy, dataset TOY) so that
+eval/compare.py can build a scoreboard from it.
+
 Run from the repo root:
     python -m model.demo_niches
     python -m model.demo_niches --epochs 150 --seeds 0 1 2
+    python -m model.demo_niches --tissues 8 --modes hodge nosplit --seeds 0 \
+        --out results/toy_E3.csv
 """
 import argparse
 import time
 
 import numpy as np
+import pandas as pd
 
 from hodgecc.synth import grid_complex
 from model.hodge_scnn import MODES
 from model.pretrain import run
-from eval.niches import evaluate
+from eval.niches import evaluate, results_rows
+
+EXPERIMENT, DATASET = "E3toy", "TOY"
+OURS, BASELINE = "hodge-scnn", "flowsummary-kmeans"
 
 
 def toy_tissue(seed=0, size=20, n_ch=4, noise=0.05):
@@ -65,36 +76,56 @@ def main():
     ap.add_argument("--epochs", type=int, default=100)
     ap.add_argument("--seeds", type=int, nargs="+", default=[0, 1, 2])
     ap.add_argument("--modes", nargs="+", default=list(MODES))
+    ap.add_argument("--tissues", type=int, default=1,
+                    help="number of toy sections (different random flows)")
+    ap.add_argument("--out", help="write scores in the shared results format (CSV)")
     args = ap.parse_args()
 
-    B1, B2, F, labels = toy_tissue(seed=0)
-    print(f"toy tissue: {int((labels != '').sum())} spots, {B1.shape[1]} edges, "
-          f"{B2.shape[1]} triangles, {F.shape[1]} channels, "
-          f"3 true niches")
-
-    rows = {}
-    base = [evaluate(baseline_features(B1, F), labels, seed=s)[0]
-            for s in args.seeds]
-    rows["baseline"] = base
-    for mode in args.modes:
-        t0 = time.time()
-        res = []
+    # name -> list of score dicts (one per tissue x seed)
+    scores = {BASELINE: []}
+    rows = []
+    t_start = time.time()
+    for tissue in range(args.tissues):
+        B1, B2, F, labels = toy_tissue(seed=tissue)
+        sample_id = f"toy{tissue}"
+        if tissue == 0:
+            print(f"toy tissue: {int((labels != '').sum())} spots, "
+                  f"{B1.shape[1]} edges, {B2.shape[1]} triangles, "
+                  f"{F.shape[1]} channels, 3 true niches, "
+                  f"{args.tissues} section(s)")
         for s in args.seeds:
-            Z, hist = run(B1, B2, F, mode=mode, epochs=args.epochs, seed=s)
-            sc, _ = evaluate(Z, labels, seed=s)
-            sc["loss0"], sc["loss1"] = hist[0], hist[-1]
-            res.append(sc)
-        rows[mode] = res
-        print(f"  {mode:8s} done in {time.time() - t0:.1f}s")
+            sc, _ = evaluate(baseline_features(B1, F), labels, seed=s)
+            scores[BASELINE].append(sc)
+            rows += results_rows(EXPERIMENT, DATASET, sample_id, BASELINE, "",
+                                 s, 0, sc)
+        for mode in args.modes:
+            for s in args.seeds:
+                Z, hist = run(B1, B2, F, mode=mode, epochs=args.epochs, seed=s)
+                sc, _ = evaluate(Z, labels, seed=s)
+                sc["loss0"], sc["loss1"] = hist[0], hist[-1]
+                scores.setdefault(mode, []).append(sc)
+                rows += results_rows(EXPERIMENT, DATASET, sample_id, OURS, mode,
+                                     s, 0, sc)
+        print(f"  section {tissue + 1}/{args.tissues} done "
+              f"({time.time() - t_start:.0f}s elapsed)")
 
     print("\nmethod     ARI (mean ± sd)   NMI (mean ± sd)   masked MSE first -> last")
-    for name, res in rows.items():
+    for name, res in scores.items():
         ari = np.array([r["ari"] for r in res])
         nmi = np.array([r["nmi"] for r in res])
         loss = (f"{np.mean([r['loss0'] for r in res]):.3f} -> "
                 f"{np.mean([r['loss1'] for r in res]):.3f}") if "loss0" in res[0] else "-"
-        print(f"{name:9s}  {ari.mean():.3f} ± {ari.std():.3f}     "
+        label = "baseline" if name == BASELINE else name
+        print(f"{label:9s}  {ari.mean():.3f} ± {ari.std():.3f}     "
               f"{nmi.mean():.3f} ± {nmi.std():.3f}     {loss}")
+
+    if args.out:
+        import os
+        os.makedirs(os.path.dirname(args.out) or ".", exist_ok=True)
+        pd.DataFrame(rows).to_csv(args.out, index=False)
+        print(f"\nwrote {len(rows)} rows to {args.out}")
+        print(f'next: python -m eval.compare {args.out} --experiment {EXPERIMENT} '
+              f'--dataset {DATASET} --ours "{OURS}[hodge]"')
 
 
 if __name__ == "__main__":
