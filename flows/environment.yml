@@ -1,0 +1,19 @@
+# P2 environment - tested with these versions on 1 Nov 2026.
+# COMMOT 0.0.3 crashes on NumPy 2 (it uses np.Inf), so numpy must stay < 2.
+name: hodge
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  - pip
+  - pip:
+      - "numpy<2"            # tested 1.26.4
+      - "scipy<1.14"         # tested 1.13.1
+      - pandas               # tested 2.3.3
+      - matplotlib           # tested 3.11
+      - scanpy==1.11.5
+      - anndata==0.12.19
+      - liana==1.10.0
+      - commot==0.0.3
+      - pytest
+      - huggingface_hub

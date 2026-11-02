@@ -43,20 +43,21 @@ Status key: **Done** | **In progress** | **Not started**
 
 | Task | Status | Notes |
 |---|---|---|
-| Agree edge-flow format with Dhriti | Not started | See "Shared data format" below |
-| LIANA+ L-R scoring on one DLPFC slice | Not started | |
-| COMMOT spatial communication on one DLPFC slice | Not started | |
-| Convert scores to edge flows `(E, C)` on Dhriti's complex | Not started | |
-| Plotting: flow arrows, gradient/curl/harmonic panels (`plots.py`) | Not started | |
+| Agree edge-flow format with Dhriti | Done | Using v0.1. Proposed extra key `uns['flow_names']`, waiting for her OK |
+| LIANA+ L-R scoring on one DLPFC slice | In progress | Done on TENX53 (breast) instead; DLPFC waiting for Mayur's data |
+| COMMOT spatial communication on one DLPFC slice | In progress | Done on TENX53 (32 pathways); DLPFC next |
+| Convert scores to edge flows `(E, C)` on Dhriti's complex | Done | TENX53: product (10 pairs) + COMMOT (32 pathways); handed to Dhriti |
+| Plotting: flow arrows, gradient/curl/harmonic panels (`plots.py`) | Done | In `flows/viz.py`, not `plots.py`. Also energy bars, holes, shuffle and circulation figures |
+| Literature check for chosen L-R pairs | Not started | Next |
 
 ### Deeptha (P1): model and evaluation
 
 | Task | Status | Notes |
 |---|---|---|
 | One-page data contract (tensors the model receives) | Not started | |
-| Small Hodge-SCNN in TopoModelX | Not started | Train on synthetic data, then one DLPFC slice |
+| Small Hodge-SCNN in TopoModelX | In progress | Sparse SCNN in `model/`; runs on toy complexes and starter.h5ad (0.06 s per pass on CPU); toy ablations behave as expected. Next: real slice once LR flows exist |
 | CPU baselines: Leiden/BANKSY, plain GCN, Cox survival (lifelines) | Not started | |
-| Evaluation harness: ARI/NMI (niches), C-index (survival) | Not started | |
+| Evaluation harness: ARI/NMI (niches), C-index (survival) | In progress | ARI/NMI in `eval/niches.py`; scoreboard in `eval/compare.py` (paired CI, Wilcoxon + Holm, BEATS/LEADS/PARITY/TRAILS). C-index next |
 
 ### Mayur (P4): data
 
@@ -149,3 +150,7 @@ To get log entries automatically, paste the prompt in [docs/LOG_PROMPT.md](docs/
 
 
 | 2026-11-01 | Deeptha | Local environment set up, 14 tests pass; starting data contract |
+| 2026-11-01 | Deeptha | Hodge-SCNN skeleton with ablation modes, toy training script, 13 model tests (27 total pass) |
+| 2026-11-01 | Deeptha | Masked-flow pretraining, ARI/NMI niche evaluation, toy niche demo (hodge ARI 0.841 vs nosplit 0.529); 37 tests pass |
+| 2026-11-01 | Disha | TENX53 LR flows (10 pairs, 32 COMMOT pathways), Hodge figures, shuffle + hole-circulation controls |
+| 2026-11-02 | Deeptha | Comparison scoreboard (eval/compare.py, 13 tests); toy demo writes shared results format (50 tests pass) |
