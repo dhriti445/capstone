@@ -40,3 +40,19 @@ Newest entries at the bottom. Format is defined in docs/LOG_PROMPT.md.
 - **What it means:** the real-data deliverable is done, and Disha can load the complex with one call
 - **Problems and fixes:** anndata refused to write string index (`allow_write_nullable_strings`); fixed by enabling the setting and making the .h5ad copy optional
 - **Next:** wait for Disha's flow array, then run real vs shuffled decomposition
+
+### 2026-11-01 - Real-data notebook (TENX53)
+- **Task:** Real-data validation notebook
+- **What I did:** built `notebooks/real_slice_TENX53.ipynb`: real mesh, Hodge Laplacian spectrum, planted flows on the real mesh, proxy L-R flows (8 pairs) with a 20-shuffle control
+- **Result:** 4869 spots / 14289 edges / 9413 triangles, b0 = 1, b1 = 8 (gudhi and spectrum agree); planted-flow error ~1e-10 without noise; real flows have higher gradient share than shuffled in 7 of 8 pairs; harmonic share < 0.1% everywhere
+- **What it means:** the pipeline works on real data and separates real from shuffled; harmonic flow is negligible on this slice because its holes are missing spots, not glands
+- **Problems and fixes:** none
+- **Next:** swap in Disha's LIANA+/COMMOT flows; test on a tissue with real glands or vessels
+
+### 2026-11-02 - Verified Disha's flows
+- **Task:** Check P2 flow outputs against my decomposition
+- **What I did:** ran `scripts/check_flows.py` on TENX53_flows_commot.h5ad (32 channels) and TENX53_flows_product.h5ad (10 channels)
+- **Result:** edges/triangles identical to my complex; B1@B2 = 0; my gradient/curl/harmonic shares match her CSVs to ~1e-14 on all 42 channels; harmonic share <= 0.27% unfilled and <= 0.02% with gaps <= 2 filled
+- **What it means:** the interface between our parts works, and the holes on TENX53 are dropouts, not ducts
+- **Problems and fixes:** none
+- **Next:** spot-shuffled COMMOT control (needs Disha's reruns); swap COMMOT flows into the real-data notebook
