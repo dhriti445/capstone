@@ -154,3 +154,4 @@ To get log entries automatically, paste the prompt in [docs/LOG_PROMPT.md](docs/
 | 2026-11-01 | Deeptha | Masked-flow pretraining, ARI/NMI niche evaluation, toy niche demo (hodge ARI 0.841 vs nosplit 0.529); 37 tests pass |
 | 2026-11-01 | Disha | TENX53 LR flows (10 pairs, 32 COMMOT pathways), Hodge figures, shuffle + hole-circulation controls |
 | 2026-11-02 | Deeptha | Comparison scoreboard (eval/compare.py, 13 tests); toy demo writes shared results format (50 tests pass) |
+| 2026-11-02 | Disha | COMMOT shuffle nulls (10 runs, step 7) for Dhriti; flows cross-checked on all 42 channels |

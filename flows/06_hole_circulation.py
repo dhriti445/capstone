@@ -28,7 +28,7 @@ import matplotlib.pyplot as plt
 
 import config as C
 from flows import load_complex, align_to_complex, preprocess, gene_values, product_flow
-from hodgecc.plots import plot_holes
+from plots import plot_holes
 from holes import ordered_loops, orient_anticlockwise, circ_index, MIN_LOOP_EDGES
 
 
