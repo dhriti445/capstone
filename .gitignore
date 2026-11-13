@@ -11,3 +11,6 @@ flows/outputs/
 flows/outputs_demo/
 .DS_Store
 *.egg-info/
+
+*.zip
+repo_report.txt

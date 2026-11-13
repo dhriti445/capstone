@@ -56,3 +56,18 @@ Newest entries at the bottom. Format is defined in docs/LOG_PROMPT.md.
 - **What it means:** the interface between our parts works, and the holes on TENX53 are dropouts, not ducts
 - **Problems and fixes:** none
 - **Next:** spot-shuffled COMMOT control (needs Disha's reruns); swap COMMOT flows into the real-data notebook
+### 2026-11-02 - DLPFC data and complex
+- **Task:** Real DLPFC slice into a complex; unblock the team's data
+- **What I did:** wrote `scripts/get_dlpfc.py` (downloads 12 sections from Hugging Face han-shu/st_datasets, standardises labels from the `cluster` column to L1-L6/WM, adds donor g1/g2/g3, keeps counts); zipped 12 sections (~485 MB) for teammates
+- **Result:** 12 sections, e.g. 151673 has 3639 spots and 33538 genes; donor g2 has only 5 layers (L3-L6, WM)
+- **What it means:** the team now has the labelled benchmark data for the niche experiments
+- **Problems and fixes:** raw files had no `layer` column, so I identified `cluster` as the expert annotation by its 7/7/5 layer pattern
+- **Next:** build the complex for 151673 and all 12 sections; run Disha's flows on DLPFC
+
+### 2026-11-03 - Real vs shuffled COMMOT control
+- **Task:** Real-vs-shuffled control on COMMOT flows
+- **What I did:** ran `scripts/shuffle_control.py` on TENX53_flows_commot.h5ad vs 10 spot-shuffled COMMOT runs from Disha (32 pathways, same edges)
+- **Result:** gradient share above all shuffles for 10 pathways, below all for 10, within range for 12 (about 3 per direction expected by chance); medians 50.6% vs 50.1% (gradient), 49.3% vs 49.8% (curl); harmonic with gaps filled at most 0.019% real vs up to 0.12% shuffled
+- **What it means:** real flows have pathway-specific spatial structure (both directions), no overall excess of loops, and no circulation around holes beyond chance
+- **Problems and fixes:** none; 10 shuffles is too few for per-pathway significance
+- **Next:** more shuffles for curl-heavy pathways; H&E check of the 7-spot gap
