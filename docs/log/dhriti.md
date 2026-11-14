@@ -71,3 +71,19 @@ Newest entries at the bottom. Format is defined in docs/LOG_PROMPT.md.
 - **What it means:** real flows have pathway-specific spatial structure (both directions), no overall excess of loops, and no circulation around holes beyond chance
 - **Problems and fixes:** none; 10 shuffles is too few for per-pathway significance
 - **Next:** more shuffles for curl-heavy pathways; H&E check of the 7-spot gap
+
+### 2026-11-02 - Complexes for all 12 DLPFC sections and gap filling
+- **Task:** Real DLPFC slice into a complex; handle dropout holes
+- **What I did:** ran `scripts/real_slice_complex.py` on all 12 sections from `get_dlpfc.py`; added `fill_max_missing` to `build_visium_complex` (one polygon 2-cell per small gap, edges unchanged) with `tests/test_visium_fill.py`; tabulated all complexes with `scripts/complex_table.py`
+- **Result:** 12 sections, 3,460-4,789 spots, 10,026-14,086 edges, 6,568-9,295 triangles; 1-9 connected pieces and 0-7 holes per section (151509 and 151510 are one piece). TENX53 has 8 holes (gaps of 1,1,1,1,1,1,2,7 spots); filling gaps up to 2 spots leaves 1 hole
+- **What it means:** the complex builder works on all 13 real sections and holes are rare; several sections consist of more than one piece, still to be checked
+- **Problems and fixes:** none
+- **Next:** check the size of the pieces (largest-piece columns), then get DLPFC flows from Disha
+
+### 2026-11-13 - Circuit recovery on a simulated tissue (RQ3)
+- **Task:** Planted-circuit recovery on the real TENX53 mesh
+- **What I did:** ran `scripts/circuit_recovery.py`: 40 planted 6-edge feedback loops (234 loop edges of 14,289) under a smooth downhill background, with noise; scored each edge by the size of the flow (raw) and by the size of its Hodge curl part (AUROC)
+- **Result:** background 1x loop strength: AUROC raw 0.990 / 0.928 / 0.748 / 0.604 and Hodge 1.000 / 0.996 / 0.855 / 0.673 at noise 0 / 0.3 / 0.6 / 1.0; background 3x: raw 0.770 / 0.731 / 0.647 / 0.581, Hodge identical to 1x (1.000 / 0.996 / 0.855 / 0.673)
+- **What it means:** the curl part ignores the downhill background completely, so planted loops are found even where raw flow size misses them; the advantage shrinks at high noise
+- **Problems and fixes:** none
+- **Next:** use `figures/circuit_recovery.png` in Review 3; test on real flows once DLPFC flows exist
