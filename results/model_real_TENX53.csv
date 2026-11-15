@@ -1,0 +1,4 @@
+method,niches,seeds,loss_first,loss_last,seed_stability_ari,agreement_with_expression_ari
+hodge,5,3,0.9808,0.8701,0.5429,0.068
+nosplit,5,3,0.9842,0.8842,0.21,0.0175
+expression-kmeans,5,3,,,0.5136,
